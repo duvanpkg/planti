@@ -54,7 +54,7 @@
             android:layout_height="20dp" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnEditar"
             android:layout_width="345dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#00FFFFFF"

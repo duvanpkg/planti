@@ -8,32 +8,35 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Profile extends AppCompatActivity implements View.OnClickListener {
+public class EditProfile extends AppCompatActivity implements View.OnClickListener {
     TextView tvNombre, tvEmail, tvDescripcion;
-    Button btnEditar, btnCerrarSesion;
+    Button btnEditarFoto, btnCancelar, btnCerrarSesion;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_edit_profile);
 
         tvNombre = findViewById(R.id.tvNombre);
         tvEmail = findViewById(R.id.tvEmail);
         tvDescripcion = findViewById(R.id.tvDescripcion);
-        btnEditar = findViewById(R.id.btnEditar);
+        btnEditarFoto = findViewById(R.id.btnEditarFoto);
+        btnCancelar = findViewById(R.id.btnCancelar);
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
 
-        btnEditar.setOnClickListener(this);
+        btnEditarFoto.setOnClickListener(this);
+        btnCancelar.setOnClickListener(this);
         btnCerrarSesion.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if(view == btnEditar){
-            Intent intent = new Intent(this, EditProfile.class);
+        if(view == btnEditarFoto){
+            Intent intent = new Intent(this, LoadPicture.class);
             startActivity(intent);
-        }else if(view == btnCerrarSesion){
-            Intent intent = new Intent(this, Login.class);
+        }else{
+            Intent intent = new Intent(this, Profile.class);
             startActivity(intent);
         }
     }
