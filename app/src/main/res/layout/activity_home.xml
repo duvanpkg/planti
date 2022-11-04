@@ -6,17 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".Home">
 
-    <TextView
-        android:id="@+id/textView2"
+    <Button
+        android:id="@+id/btnPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="131dp"
-        android:layout_marginTop="77dp"
-        android:layout_marginEnd="222dp"
-        android:layout_marginBottom="507dp"
-        android:text="Aqui va el Home"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Button"
+        tools:layout_editor_absoluteX="87dp"
+        tools:layout_editor_absoluteY="246dp"
+        tools:ignore="MissingConstraints" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
