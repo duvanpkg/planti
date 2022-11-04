@@ -21,7 +21,7 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(this, RatePlant.class);
+        Intent intent = new Intent(this, CreatePlant.class);
         startActivity(intent);
     }
 }
