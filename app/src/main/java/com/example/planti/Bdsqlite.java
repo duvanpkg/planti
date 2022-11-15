@@ -15,8 +15,8 @@ public class Bdsqlite extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("create table user(id int primary Key, email text, password text)");
-        sqLiteDatabase.execSQL("insert into user values(1,'admin@admin.com', 'admin')");
+        sqLiteDatabase.execSQL("create table users(id int primary Key, email text, password text)");
+        sqLiteDatabase.execSQL("insert into users values(1,'admin@admin.com', 'admin')");
     }
 
     @Override

@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
     Button btnRegister;
@@ -51,7 +53,13 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     }
 
     private int countUsers() {
-        return 1; // toca conectar la bd para contar que ids estan libres
+        Cursor fila = bd.rawQuery("select count(*) from users", null);
+        if (fila.moveToFirst()) {
+            String result = fila.getString(0);
+            return Integer.parseInt(result) + 1;
+        } else {
+            return -1;
+        }
     }
 
     @Override
@@ -62,20 +70,20 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         }
         if (view == btnRegister) {
             getData();
-            if (pass1 != pass2){
-                tvErrorRegister.setText("Contraseña no coincide");
+            if(id == -1){
+                Toast.makeText(this, "Ocurrió un error al intentar crear el usuario", Toast.LENGTH_LONG).show();
+            }else if (!pass1.equals(pass2)){
+                tvErrorRegister.setText("La contraseña no coincide");
             }else {
                 tvErrorRegister.setText("");
-
 
                 ContentValues registro = new ContentValues();
                 registro.put("id", id);
                 registro.put("email", email);
                 registro.put("password", pass1);
 
-                bd.insert("paciente", null, registro);
-//        bd.close();
-                Toast.makeText(this, "Se inserto satisfactoriamente", Toast.LENGTH_LONG).show();
+                bd.insert("users", null, registro);
+                Toast.makeText(this, "Se creó el usuario satisfactoriamente", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(this, Home.class);
                 startActivity(intent);
             }
