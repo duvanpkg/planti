@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">planti</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="tab_text_1">Inicio</string>
+    <string name="tab_text_2">Aprende</string>
+    <string name="tab_text_3">Perfil</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
