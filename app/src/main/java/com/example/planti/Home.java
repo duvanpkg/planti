@@ -33,10 +33,6 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
             Intent intent = new Intent(this, CreatePlant.class);
             startActivity(intent);
         }
-        if(view == btnPerfil){
-            Intent intent = new Intent(this, Profile.class);
-            startActivity(intent);
-        }
         if(view == calificar1 || view == calificar2){
             Intent intent = new Intent(this, RatePlant.class);
             startActivity(intent);
