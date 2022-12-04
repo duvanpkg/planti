@@ -7,6 +7,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.planti.ui.main.HomeFragment;
+
 
 public class CreatePlant extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,10 +26,9 @@ public class CreatePlant extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-
         if (view == btnCrear) {
-            Intent intent = new Intent(this, Home.class);
-            startActivity(intent);
+            // todo: guardar info de la planta en la base de datos
+            finish();
         }
     }
 }

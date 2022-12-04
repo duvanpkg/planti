@@ -1,21 +1,26 @@
 package com.example.planti.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.planti.CreatePlant;
 import com.example.planti.R;
+import com.example.planti.RatePlant;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,5 +67,23 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
+    }
+
+    Button calificar1, calificar2;
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        calificar1 = view.findViewById(R.id.calificar1);
+        calificar2 = view.findViewById(R.id.calificar2);
+
+        calificar1.setOnClickListener(this);
+        calificar2.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == calificar1 || view == calificar2){
+            Intent intent = new Intent(getActivity(), RatePlant.class);
+            startActivity(intent);
+        }
     }
 }
