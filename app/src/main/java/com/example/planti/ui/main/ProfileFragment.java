@@ -1,13 +1,19 @@
 package com.example.planti.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.example.planti.EditProfile;
+import com.example.planti.Login;
 import com.example.planti.R;
 
 /**
@@ -15,7 +21,7 @@ import com.example.planti.R;
  * Use the {@link ProfileFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,5 +68,30 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false);
+    }
+
+    TextView tvNombre, tvEmail, tvDescripcion;
+    Button btnEditar, btnCerrarSesion;
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        tvNombre = view.findViewById(R.id.tvNombre);
+        tvEmail = view.findViewById(R.id.tvEmail);
+        tvDescripcion = view.findViewById(R.id.tvDescripcion);
+        btnEditar = view.findViewById(R.id.btnEditar);
+        btnCerrarSesion = view.findViewById(R.id.btnCerrarSesion);
+
+        btnEditar.setOnClickListener(this);
+        btnCerrarSesion.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == btnEditar){
+            Intent intent = new Intent(getActivity(), EditProfile.class);
+            startActivity(intent);
+        }else if(view == btnCerrarSesion){
+            Intent intent = new Intent(getActivity(), Login.class);
+            startActivity(intent);
+        }
     }
 }
