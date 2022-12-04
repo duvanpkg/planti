@@ -78,7 +78,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         tvEmail = view.findViewById(R.id.tvEmail);
         tvDescripcion = view.findViewById(R.id.tvDescripcion);
         btnEditar = view.findViewById(R.id.btnEditar);
-        btnCerrarSesion = view.findViewById(R.id.btnCerrarSesion);
+        btnCerrarSesion = view.findViewById(R.id.btnGuardar);
 
         btnEditar.setOnClickListener(this);
         btnCerrarSesion.setOnClickListener(this);

@@ -74,7 +74,7 @@
             android:layout_height="20dp" />
 
         <Button
-            android:id="@+id/btnCerrarSesion"
+            android:id="@+id/btnGuardar"
             android:layout_width="345dp"
             android:layout_height="wrap_content"
             android:text="Cerrar sesión" />
