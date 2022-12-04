@@ -89,7 +89,7 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/btnCerrarSesion"
+                android:id="@+id/btnGuardar"
                 android:layout_width="169dp"
                 android:layout_height="60dp"
                 android:text="Guardar" />

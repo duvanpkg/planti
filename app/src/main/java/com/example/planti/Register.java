@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.planti.ui.main.HomeFragment;
+
 public class Register extends AppCompatActivity implements View.OnClickListener {
     Button btnRegister;
     Button btnIniciarSesionRegister;
@@ -84,7 +86,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
                 bd.insert("users", null, registro);
                 Toast.makeText(this, "Se creó el usuario satisfactoriamente", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(this, Home.class);
+                Intent intent = new Intent(this, HomeFragment.class);
                 startActivity(intent);
             }
         }

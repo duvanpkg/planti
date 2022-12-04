@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class EditProfile extends AppCompatActivity implements View.OnClickListener {
     TextView tvNombre, tvEmail, tvDescripcion;
-    Button btnEditarFoto, btnCancelar, btnCerrarSesion;
+    Button btnEditarFoto, btnCancelar, btnGuardar;
 
 
     @Override
@@ -23,11 +23,11 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         tvDescripcion = findViewById(R.id.tvDescripcion);
         btnEditarFoto = findViewById(R.id.btnEditarFoto);
         btnCancelar = findViewById(R.id.btnCancelar);
-        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
+        btnGuardar = findViewById(R.id.btnGuardar);
 
         btnEditarFoto.setOnClickListener(this);
         btnCancelar.setOnClickListener(this);
-        btnCerrarSesion.setOnClickListener(this);
+        btnGuardar.setOnClickListener(this);
     }
 
     @Override
@@ -35,9 +35,11 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
         if(view == btnEditarFoto){
             Intent intent = new Intent(this, LoadPicture.class);
             startActivity(intent);
-        }else{
-            Intent intent = new Intent(this, Profile.class);
-            startActivity(intent);
+        }else if(view == btnCancelar){
+            finish();
+        }else if(view == btnGuardar){
+            // todo: actualizar información editada en la base de datos
+            finish();
         }
     }
 }
