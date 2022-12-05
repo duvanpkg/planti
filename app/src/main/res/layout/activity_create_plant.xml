@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Descripción"
-            android:inputType="textPassword"
+            android:inputType="textPersonName"
             android:textSize="20sp" />
 
         <Space
