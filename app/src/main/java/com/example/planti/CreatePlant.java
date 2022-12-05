@@ -46,7 +46,6 @@ public class CreatePlant extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View view) {
         if(view == btnTomarFoto){
-            // checkPermissionCamera();
             takePicture();
         }
         else if (view == btnCrear) {
@@ -59,55 +58,17 @@ public class CreatePlant extends AppCompatActivity implements View.OnClickListen
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        System.out.println(data);
         if (requestCode == 101 && resultCode == RESULT_OK) {
-            // Bitmap thumbnail = data.getParcelableExtra("data");
             Bundle extras = data.getExtras();
-            System.out.println(extras);
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            System.out.println("Hola");
-            System.out.println(imageBitmap);
             ivPlant.setImageBitmap(imageBitmap);
         }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == 100){
-            if(permissions.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                takePicture();
-            }
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     private void takePicture() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent,101);
-        System.out.println(88888);
-        if(intent.resolveActivity(getPackageManager())!=null){
-            System.out.println(9999);
-            startActivityForResult(intent,101);
-
-        }
     }
-
-    /*
-    private void checkPermissionCamera() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED){
-                takePicture();
-                System.out.println(44444);
-            }else{
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA},100);
-                System.out.println(1111);
-            }
-        }else{
-            System.out.println(33333);
-            takePicture();
-        }
-    }
-    */
 }
 
 
