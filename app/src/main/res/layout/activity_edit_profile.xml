@@ -24,7 +24,7 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/ivPlant"
                 android:layout_width="225dp"
                 android:layout_height="218dp"
                 android:layout_gravity="center"

@@ -1,5 +1,6 @@
 package com.example.planti;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -16,7 +17,7 @@ import android.view.View;
 import com.example.planti.ui.main.SectionsPagerAdapter;
 import com.example.planti.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityMainBinding binding;
 
@@ -34,12 +35,12 @@ public class MainActivity extends AppCompatActivity {
         tabs.setupWithViewPager(viewPager);
         FloatingActionButton fab = binding.fab;
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        fab.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(this, CreatePlant.class);
+        startActivity(intent);
     }
 }
