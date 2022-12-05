@@ -1,65 +1,60 @@
 package com.example.planti.ui.main;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
+import com.example.planti.Bdsqlite;
 import com.example.planti.CreatePlant;
 import com.example.planti.R;
 import com.example.planti.RatePlant;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    ArrayList<HashMap<String, String>> arraylist = new ArrayList<>();
+    Bdsqlite admin;
+    SQLiteDatabase bd;
 
     public HomeFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -69,21 +64,66 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-    Button calificar1, calificar2;
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        calificar1 = view.findViewById(R.id.calificar1);
-        calificar2 = view.findViewById(R.id.calificar2);
-
-        calificar1.setOnClickListener(this);
-        calificar2.setOnClickListener(this);
+        admin = new Bdsqlite(getActivity(), "planti", null, 1);
+        bd = admin.getWritableDatabase();
+        try {
+            llenarlista();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
-    @Override
-    public void onClick(View view) {
-        if(view == calificar1 || view == calificar2){
-            Intent intent = new Intent(getActivity(), RatePlant.class);
-            startActivity(intent);
+    private void llenarlista() throws JSONException {
+        String query = "select * from plants";
+        Cursor cursor = bd.rawQuery(query, null);
+        JSONArray ja = null;
+
+        if (cursor.moveToFirst()){
+            while(!cursor.isAfterLast()){
+                HashMap<String, String> map = new HashMap<String, String>();
+                @SuppressLint("Range")
+                String id = cursor.getString(cursor.getColumnIndex("id"));
+                @SuppressLint("Range")
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                @SuppressLint("Range")
+                String plantKind = cursor.getString(cursor.getColumnIndex("plantKind"));
+//                @SuppressLint("Range")
+//                String bitmap = cursor.getString(cursor.getColumnIndex("bitmap"));
+                @SuppressLint("Range")
+                String description = cursor.getString(cursor.getColumnIndex("description"));
+
+
+                map.put("id", id);
+                map.put("name", name);
+                map.put("plantKind", plantKind);
+//                map.put("bitmap", bitmap);
+                map.put("description", description);
+                System.out.println(map);
+                arraylist.add(map);
+
+                cursor.moveToNext();
+            }
         }
+        cursor.close();
+
+        //2 arreglos
+        String[] origen = new String[5];
+        origen[0] = "name";
+        origen[1] = "plantKind";
+        origen[2] = "description";
+//        origen[3] = "bitmap";
+//        origen[4] = "button" ;
+
+        int[] destino = new int[4];
+        destino[0] = R.id.tvNombre;
+        destino[1] = R.id.tvTipo;
+        destino[2] = R.id.tvDescripcion;
+//        destino[3] = R.id.ivPlant;
+        SimpleAdapter listadapter = new SimpleAdapter(getActivity(), arraylist, R.layout.item_home, origen, destino);
+        ListView lvVisitas = getView().findViewById(R.id.lvHome);
+        lvVisitas.setAdapter(listadapter);
+
     }
 }
