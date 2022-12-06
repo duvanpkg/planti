@@ -96,8 +96,6 @@ public class CreatePlant extends AppCompatActivity implements View.OnClickListen
                 registro.put("imageBitmap", getBytes(imageBitmap));
                 registro.put("description", description);
 
-
-
                 bd.insert("plants", null, registro);
                 Toast.makeText(this, "Se creó la planta satisfactoriamente", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(this, MainActivity.class);
