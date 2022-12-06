@@ -29,7 +29,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".CreatePlant"
@@ -76,7 +75,6 @@
         <activity
             android:name=".Welcome"
             android:exported="true">
-
 
             <meta-data
                 android:name="android.app.lib_name"
