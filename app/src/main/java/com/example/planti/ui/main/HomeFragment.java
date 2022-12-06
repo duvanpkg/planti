@@ -89,8 +89,8 @@ public class HomeFragment extends Fragment {
                 String name = cursor.getString(cursor.getColumnIndex("name"));
                 @SuppressLint("Range")
                 String plantKind = cursor.getString(cursor.getColumnIndex("plantKind"));
-//                @SuppressLint("Range")
-//                String bitmap = cursor.getString(cursor.getColumnIndex("bitmap"));
+                @SuppressLint("Range")
+                String bitmap = cursor.getString(cursor.getColumnIndex("imageBitmap"));
                 @SuppressLint("Range")
                 String description = cursor.getString(cursor.getColumnIndex("description"));
 
@@ -98,7 +98,7 @@ public class HomeFragment extends Fragment {
                 map.put("id", id);
                 map.put("name", name);
                 map.put("plantKind", plantKind);
-//                map.put("bitmap", bitmap);
+                map.put("bitmap", bitmap);
                 map.put("description", description);
                 System.out.println(map);
                 arraylist.add(map);
@@ -109,18 +109,17 @@ public class HomeFragment extends Fragment {
         cursor.close();
 
         //2 arreglos
-        String[] origen = new String[5];
+        String[] origen = new String[4];
         origen[0] = "name";
         origen[1] = "plantKind";
         origen[2] = "description";
-//        origen[3] = "bitmap";
-//        origen[4] = "button" ;
+        origen[3] = "bitmap";
 
         int[] destino = new int[4];
         destino[0] = R.id.tvNombre;
         destino[1] = R.id.tvTipo;
         destino[2] = R.id.tvDescripcion;
-//        destino[3] = R.id.ivPlant;
+        destino[3] = R.id.ivPlant;
         SimpleAdapter listadapter = new SimpleAdapter(getActivity(), arraylist, R.layout.item_home, origen, destino);
         ListView lvVisitas = getView().findViewById(R.id.lvHome);
         lvVisitas.setAdapter(listadapter);
