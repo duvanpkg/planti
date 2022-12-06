@@ -21,7 +21,7 @@ public class Bdsqlite extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL("insert into users values(1,'admin@admin.com', 'admin')");
         Bitmap bitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
-        sqLiteDatabase.execSQL("insert into plants values(1,'planta prueba', 'rosas', '123456789','rosas blancas')");
+        sqLiteDatabase.execSQL("insert into plants values(1,'planta prueba', 'rosas', '','rosas blancas')");
     }
 
     @Override
