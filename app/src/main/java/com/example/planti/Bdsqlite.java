@@ -16,10 +16,10 @@ public class Bdsqlite extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("create table users(id int primary Key, email text, password text)");
+        sqLiteDatabase.execSQL("create table users(id int primary Key, email text, password text, name text, description text)");
         sqLiteDatabase.execSQL("create table plants(id int primary Key, name String, plantKind String, imageBitmap String, description String)");
 
-        sqLiteDatabase.execSQL("insert into users values(1,'admin@admin.com', 'admin')");
+        sqLiteDatabase.execSQL("insert into users values(1,'admin@admin.com', 'admin','admin','soy el admin')");
         Bitmap bitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
         sqLiteDatabase.execSQL("insert into plants values(1,'planta prueba', 'rosas', '','rosas blancas')");
     }

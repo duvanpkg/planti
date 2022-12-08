@@ -87,6 +87,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 Toast.makeText(this, "Se creó el usuario satisfactoriamente", Toast.LENGTH_LONG).show();
                 bd.close();
                 Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("logged_user",email);
                 startActivity(intent);
             }
         }

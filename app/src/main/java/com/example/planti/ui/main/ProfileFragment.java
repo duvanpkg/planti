@@ -1,6 +1,9 @@
 package com.example.planti.ui.main;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -11,9 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.planti.Bdsqlite;
 import com.example.planti.EditProfile;
 import com.example.planti.Login;
+import com.example.planti.MainActivity;
 import com.example.planti.R;
 
 /**
@@ -76,12 +82,38 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         tvNombre = view.findViewById(R.id.tvNombre);
         tvEmail = view.findViewById(R.id.tvEmail);
-        tvDescripcion = view.findViewById(R.id.tvNombre);
+        tvDescripcion = view.findViewById(R.id.tvDescripcion);
         btnEditar = view.findViewById(R.id.btnEditar);
         btnCerrarSesion = view.findViewById(R.id.btnGuardar);
 
         btnEditar.setOnClickListener(this);
         btnCerrarSesion.setOnClickListener(this);
+
+        cargarDatos();
+    }
+
+    @SuppressLint({"Range", "SetTextI18n"})
+    private void cargarDatos() {
+        Bdsqlite admin = new Bdsqlite(getActivity(), "planti", null, 1);
+        SQLiteDatabase bd = admin.getWritableDatabase();
+
+        Bundle b = getActivity().getIntent().getExtras();
+        String email = b.getString("logged_user");
+        System.out.println(email);
+        String query = "select name, description from users where email='" + email +"'";
+        Cursor fila = bd.rawQuery(query, null);
+        if (fila.moveToFirst()) {
+            String name = fila.getString(fila.getColumnIndex("name"));
+            String description = fila.getString(fila.getColumnIndex("description"));
+            System.out.println(name);
+            System.out.println(description);
+            tvNombre.setText(name);
+            tvEmail.setText(email);
+            tvDescripcion.setText(description);
+        } else {
+            Toast.makeText(getActivity(), "Ha ocurrido un error", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     @Override
