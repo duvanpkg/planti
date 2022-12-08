@@ -25,15 +25,22 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Crea tu Planta Favorita"
+            android:gravity="center_horizontal"
+            android:text="Publica tu planta"
             android:textSize="34sp"
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/ivPlant"
             android:layout_width="354dp"
             android:layout_height="133dp"
-            app:srcCompat="@drawable/plantar" />
+            app:srcCompat="@drawable/planta2" />
+
+        <Button
+            android:id="@+id/btnTomarFoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tomar foto" />
 
         <EditText
             android:id="@+id/etNombre"
@@ -64,12 +71,12 @@
             android:layout_height="10dp" />
 
         <EditText
-            android:id="@+id/etCantidad"
+            android:id="@+id/etDescripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Ingrese el tiempo de Crecimiento"
-            android:inputType="textPassword"
+            android:hint="Descripción"
+            android:inputType="textPersonName"
             android:textSize="20sp" />
 
         <Space

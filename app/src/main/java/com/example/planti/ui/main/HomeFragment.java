@@ -1,19 +1,39 @@
 package com.example.planti.ui.main;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
+import com.example.planti.Bdsqlite;
 import com.example.planti.CreatePlant;
 import com.example.planti.R;
 import com.example.planti.RatePlant;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,44 +42,20 @@ import com.example.planti.RatePlant;
  */
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public HomeFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
@@ -69,21 +65,82 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
-    Button calificar1, calificar2;
+    // Relevant code starts here!!!
+
+    Bdsqlite admin;
+    SQLiteDatabase bd;
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        calificar1 = view.findViewById(R.id.calificar1);
-        calificar2 = view.findViewById(R.id.calificar2);
+        admin = new Bdsqlite(getActivity(), "planti", null, 1);
+        bd = admin.getWritableDatabase();
+        String query = "select * from plants";
+        Cursor cursor = bd.rawQuery(query, null);
 
-        calificar1.setOnClickListener(this);
-        calificar2.setOnClickListener(this);
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast()) {
+
+                @SuppressLint("Range")
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                @SuppressLint("Range")
+                String plantKind = cursor.getString(cursor.getColumnIndex("plantKind"));
+                @SuppressLint("Range")
+                byte[] image = cursor.getBlob(cursor.getColumnIndex("imageBitmap"));
+                @SuppressLint("Range")
+                String description = cursor.getString(cursor.getColumnIndex("description"));
+
+
+                TextView tvNombre = new TextView(getActivity());
+                tvNombre.setText(name);
+                tvNombre.setTextSize(30);
+                tvNombre.setTextColor(Color.parseColor("#000000"));
+                tvNombre.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                ImageView iv = new ImageView(getActivity());
+                try{
+                    iv.setImageBitmap(BitmapFactory.decodeByteArray(image, 0, image.length));
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(500, 500);
+                    layoutParams.gravity=Gravity.CENTER;
+                    iv.setLayoutParams(layoutParams);
+
+                }catch (Exception e){
+                    //show nothing
+                }
+
+                TextView tvTipo = new TextView(getActivity());
+                tvTipo.setText(plantKind);
+                tvTipo.setTextSize(20);
+                tvTipo.setTextColor(Color.parseColor("#000000"));
+                tvTipo.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                TextView tvDescripcion = new TextView(getActivity());
+                tvDescripcion.setText(description);
+                tvDescripcion.setTextSize(15);
+                tvDescripcion.setTextColor(Color.parseColor("#000000"));
+                tvDescripcion.setGravity(Gravity.CENTER_HORIZONTAL);
+
+                Button btn = new Button(getActivity());
+                btn.setText("Calificar");
+                btn.setOnClickListener(this);
+
+                LinearLayout layout = getActivity().findViewById(R.id.layout);
+                layout.addView(tvNombre);
+                layout.addView(tvTipo);
+                layout.addView(tvDescripcion);
+                layout.addView(iv);
+                layout.addView(btn);
+
+                cursor.moveToNext();
+            }
+        }
+
+        cursor.close();
+
     }
 
     @Override
     public void onClick(View view) {
-        if(view == calificar1 || view == calificar2){
-            Intent intent = new Intent(getActivity(), RatePlant.class);
-            startActivity(intent);
-        }
+        Intent intent = new Intent(getActivity(),RatePlant.class);
+        startActivity(intent);
     }
 }

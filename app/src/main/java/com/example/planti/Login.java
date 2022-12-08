@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.planti.ui.main.HomeFragment;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
     EditText edtEmail, edtPassword;
@@ -44,11 +43,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             String query = "select email, password from users where email='" + edtEmail.getText()+"' and password='"+edtPassword.getText()+"'";
             Cursor fila = bd.rawQuery(query, null);
             if (fila.moveToFirst()) {
-                Intent intent = new Intent(this, HomeFragment.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
             } else {
                 Toast.makeText(this, "Correo o contraseña equivocada", Toast.LENGTH_LONG).show();
             }
+            bd.close();
         }
         if(view == btnRegisterLogin){
             Intent intent = new Intent(this, Register.class);
