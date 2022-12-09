@@ -1,15 +1,17 @@
 package com.example.planti;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import androidx.annotation.Nullable;
 
+import java.io.ByteArrayOutputStream;
+
 public class Bdsqlite extends SQLiteOpenHelper {
-
-
     public Bdsqlite(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
@@ -20,8 +22,7 @@ public class Bdsqlite extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("create table plants(id int primary Key, name String, plantKind String, imageBitmap String, description String)");
 
         sqLiteDatabase.execSQL("insert into users values(1,'admin@admin.com', 'admin','admin','soy el admin')");
-        Bitmap bitmap = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
-        sqLiteDatabase.execSQL("insert into plants values(1,'planta prueba', 'rosas', '','rosas blancas')");
+
     }
 
     @Override
