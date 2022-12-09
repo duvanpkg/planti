@@ -78,6 +78,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     TextView tvNombre, tvEmail, tvDescripcion;
     Button btnEditar, btnCerrarSesion;
+    String email, name, description;
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         tvNombre = view.findViewById(R.id.tvNombre);
@@ -98,15 +99,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         SQLiteDatabase bd = admin.getWritableDatabase();
 
         Bundle b = getActivity().getIntent().getExtras();
-        String email = b.getString("logged_user");
-        System.out.println(email);
+        email = b.getString("logged_user");
         String query = "select name, description from users where email='" + email +"'";
         Cursor fila = bd.rawQuery(query, null);
         if (fila.moveToFirst()) {
-            String name = fila.getString(fila.getColumnIndex("name"));
-            String description = fila.getString(fila.getColumnIndex("description"));
-            System.out.println(name);
-            System.out.println(description);
+            name = fila.getString(fila.getColumnIndex("name"));
+            description = fila.getString(fila.getColumnIndex("description"));
             tvNombre.setText(name);
             tvEmail.setText(email);
             tvDescripcion.setText(description);
@@ -120,6 +118,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         if(view == btnEditar){
             Intent intent = new Intent(getActivity(), EditProfile.class);
+            intent.putExtra("name", name);
+            intent.putExtra("email", email);
+            intent.putExtra("description", description);
             startActivity(intent);
         }else if(view == btnCerrarSesion){
             Intent intent = new Intent(getActivity(), Login.class);
