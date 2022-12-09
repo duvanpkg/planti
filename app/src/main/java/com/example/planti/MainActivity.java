@@ -40,7 +40,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        Bundle b = this.getIntent().getExtras();
+        String email = b.getString("logged_user");
+
         Intent intent = new Intent(this, CreatePlant.class);
+        intent.putExtra("logged_user",email);
         startActivity(intent);
     }
 }

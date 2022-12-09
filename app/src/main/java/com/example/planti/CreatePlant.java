@@ -98,7 +98,12 @@ public class CreatePlant extends AppCompatActivity implements View.OnClickListen
 
                 bd.insert("plants", null, registro);
                 Toast.makeText(this, "Se creó la planta satisfactoriamente", Toast.LENGTH_LONG).show();
+
+                Bundle b = this.getIntent().getExtras();
+                String email = b.getString("logged_user");
+
                 Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("logged_user",email);
                 startActivity(intent);
             }
         }
