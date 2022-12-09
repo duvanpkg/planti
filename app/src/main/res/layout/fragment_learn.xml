@@ -5,26 +5,419 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.LearnFragment" >
+    tools:context=".ui.main.LearnFragment">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+    <ScrollView
+        android:layout_width="385dp"
+        android:layout_height="711dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="68dp"
-            android:layout_marginStart="11dp"
-            android:layout_marginTop="388dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="324dp"
-            android:text="HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" />
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Como cultivar lechuga según Mauricio"
+                    android:textColor="#0C883B"
+                    android:textSize="24sp" />
+
+                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                    android:id="@+id/youtube_player_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:autoPlay="false"
+                    app:videoId="dz8Ph1ipUfo" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="18dp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Recomendaciones basicas para el cuidado de tus plantas"
+                    android:textColor="#0C883B"
+                    android:textSize="24sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="1. Selecciona las plantas adecuadas para tu hogar"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Si vas a comenzar o renovar tu espacio, jardín o colección vegetal, tienes que evaluar bien cuáles serán las plantas elegidas, de acuerdo a las condiciones de tamaño y luz solar.   Hay especies que se dan mucho mejor en el verano, por ejemplo, las orquídeas que logran sacar provecho de la humedad del ambiente o incluso del agua en la base de tu maceta. Otras opciones interesantes son las bromelias, bastante resistentes por naturaleza o las suculentas que son verdaderas fanáticas del sol."
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:src="@drawable/seleccionar_planta" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="2. Elige una adecuada maceta"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Para el crecimiento óptimo de tu planta, es muy importante elegir el material y tamaño de la maceta de acuerdo a su crecimiento y la humedad que necesitan.   Si la planta alcanza los 50 cm de altura, es recomendable usar una maceta de 30 cm de diámetro. Asimismo, si buscas que alcance el metro de altura, debes optar por trasplantarla a una maceta de al menos 50 cm de diámetro.  En cuanto al material, las macetas de plástico son ideales para aquellas plantas que necesitan un suelo húmedo. Por otro lado, si la planta necesita un suelo con mayor drenaje, la mejor opción será una maceta de arcilla o terracota. También asegúrate que tengan un orificio en la base para que drene el agua del riego."
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:src="@drawable/maceta" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="3. Riega medido para mantenerlas sanas  "
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Regar las plantas ayuda en su crecimiento y a mantenerlas sanas, previniendo enfermedades y daños provocados por insectos. Lo ideal es regarlas por la mañana o por la tarde cuando baje el sol, de acuerdo a la planta que tengas en casa.   Es recomendable e importante, observar que el agua drene por el orificio de la base para asegurar que alcance las raíces de las plantas. La frecuencia es fácil de calcular: introduce un palito en el sustrato y si sale seco, ya es momento de regar.  Evita mojar sus hojas porque esto puede dañarlas produciéndole hongos. Puedes limpiar sus hojas con ayuda de un pañito, si le agregas limón cada 6 meses notarás más brillosas y fuertes. "
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:src="@drawable/regar" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="4. Remueve el sustrato de la superficie"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Con ayuda de una pala pequeña, remueve el sustrato de la parte superior de tu maceta para evitar que se compacte. Esto permitirá el paso del agua y el oxígeno hacia las raíces.   Puedes hacerlo una vez por semana y procura no hacerlo tan profundo para evitar dañar las raíces de tus plantas."
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/imageView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:src="@drawable/sutrato" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="5. Realiza una limpieza y poda  "
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Consiste en cortar las hojas secas o enfermas y las flores marchitas, pues le quitan nutrientes y esto afecta al desarrollo de la planta. Puedes realizarlo con ayuda de tijeras previamente desinfectadas con alcohol para evitar generar cualquier contaminación."
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:src="@drawable/podar" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="6. Mantenlas en un solo lugar  "
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="De acuerdo a las necesidades de tus plantas, podrás colocar la maceta o plantarlas en el lugar adecuado dentro de tu hogar o jardín.   Las plantas de nuestro hogar también necesitarán aire fresco y limpio. Si se encuentran dentro de una habitación, asegúrate de ventilar este ambiente al mediodía, para evitar que el calor le afecte.   Si tus plantas están ubicadas en un jardín o terraza, trata de evitar los cambios bruscos de temperatura en ese espacio, puesto que tienden a sentir la variedad del clima y no estar a gusto en el lugar que están colocadas, como por ejemplo el caso de las anturias que necesitan semisombra para vivir."
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:src="@drawable/solo_lugar" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="7. Controla las molestas plagas  "
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Revisa frecuentemente tus plantas en búsqueda de la aparición de insectos u hongos que podrían estar afectándolas. Un remedio casero puede ser aplicar un insecticida natural a base de dientes de ajo. Solo deberás hervirlos en una olla con un litro de agua, puedes agregar ají y pimienta para una mayor potencia. Deja que se enfríe y diluye 250 ml de esta infusión en un litro de agua fría. Colócalo en un rociador y aplícalo en las hojas y sustrato cada 15 días. Recuerda secarlas con ayuda de un paño. "
+                    android:textSize="16sp" />
+
+                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                    android:id="@+id/youtube_player_view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:autoPlay="false"
+                    app:videoId="0GMYLkLAhoI" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="8. Coloca tus dudas en la app para su crecimiento junto a la comunidad"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView25"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Si tu planta empieza a crecer y ves que necesita algún apoyo para mantenerse en pie, es muy probable que una persoba de la app movil le ayude a mantenerse recta.   Suele ser un palo de madera cuyo tamaño dependerá de tu planta, puede ser pequeños y delgados para tu maceta o gruesos y altos para un árbol.   Para colocarlo, introdúcelo en el sustrato al lado de tu planta y átalo con un hilo de rafia para que de esa forma imite su rectitud."
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="match_parent"
+                    android:layout_height="129dp"
+                    android:src="@drawable/plantilogo" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView22"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="9. Trasplanta en el momento adecuado  "
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Algunas señales de que tu planta necesita ser trasladada a una maceta más grande es cuando las raíces empiezan a salir por los agujeros de drenaje o su crecimiento se detiene.   Consigue una maceta más grande y utilizando guantes llénala con sustrato, dejando espacio para colocar tu planta. La mejor época para trasplantar es la primavera, no es recomendable regar entre 3 y 6 días desde el trasplante, para dejar que las raíces se acostumbren y cicatricen luego de este cambio de ambiente."
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:src="@drawable/transplantar" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView26"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="10. Coloca abono para brindarles nutrientes  "
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="El abono es importante para que tus plantas se mantengan fuertes y sanas. El más universal y recomendado es el compost o el humus de lombriz que puedes colocar sobre el sustrato y regar para que se absorban mejor los nutrientes que le brindan.  Puedes optar también por elaborar compostaje casero o realizar tu propio fertilizante natural a base de cáscaras de plátano. Solo deberás hervirlas y colocar esta infusión en un pulverizador o regadera para aplicarlo. "
+                    android:textSize="16sp" />
+                <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+                    android:id="@+id/youtube_player_view3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:autoPlay="false"
+                    app:videoId="qbuidUVCkzM" />
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
