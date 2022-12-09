@@ -18,7 +18,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     Bdsqlite admin;
     SQLiteDatabase bd;
-
+    String email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +40,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if(view == btnIniciarSesion){
-            String query = "select email, password from users where email='" + edtEmail.getText()+"' and password='"+edtPassword.getText()+"'";
+            email = String.valueOf(edtEmail.getText());
+            String query = "select email, password from users where email='" + email +"' and password='"+edtPassword.getText()+"'";
             Cursor fila = bd.rawQuery(query, null);
             if (fila.moveToFirst()) {
                 Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("logged_user",email);
                 startActivity(intent);
             } else {
                 Toast.makeText(this, "Correo o contraseña equivocada", Toast.LENGTH_LONG).show();

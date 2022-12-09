@@ -15,23 +15,22 @@ import android.widget.Toast;
 
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
-    Button btnRegister;
-    Button btnIniciarSesionRegister;
-    EditText edtEmail, edtPasswordRegister, edtPasswordRegister2;
+    Button btnRegister, btnIniciarSesionRegister;
+    EditText edtName, edtDescription, edtEmail, edtPasswordRegister, edtPasswordRegister2;
     TextView tvErrorRegister;
 
     Bdsqlite admin;
     SQLiteDatabase bd;
     int id;
-    String email;
-    String pass1;
-    String pass2;
+    String name, description, email, pass1, pass2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         btnRegister = findViewById(R.id.btnRegister);
+        edtName = findViewById(R.id.edtName);
+        edtDescription = findViewById(R.id.edtDescription);
         edtEmail = findViewById(R.id.edtEmail);
         edtPasswordRegister2 = findViewById(R.id.edtPasswordRegister2);
         edtPasswordRegister = findViewById(R.id.edtPasswordRegister);
@@ -48,6 +47,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     private void getData() {
         id = countUsers();
+        name = String.valueOf(edtName.getText());
+        description = String.valueOf(edtDescription.getText());
         email = String.valueOf(edtEmail.getText());
         pass1 = String.valueOf(edtPasswordRegister.getText());
         pass2 = String.valueOf(edtPasswordRegister2.getText());
@@ -80,6 +81,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
                 ContentValues registro = new ContentValues();
                 registro.put("id", id);
+                registro.put("name", name);
+                registro.put("description", description);
                 registro.put("email", email);
                 registro.put("password", pass1);
 
@@ -87,6 +90,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                 Toast.makeText(this, "Se creó el usuario satisfactoriamente", Toast.LENGTH_LONG).show();
                 bd.close();
                 Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("logged_user",email);
                 startActivity(intent);
             }
         }

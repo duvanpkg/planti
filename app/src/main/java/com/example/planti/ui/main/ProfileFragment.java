@@ -1,6 +1,9 @@
 package com.example.planti.ui.main;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -11,9 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.planti.Bdsqlite;
 import com.example.planti.EditProfile;
 import com.example.planti.Login;
+import com.example.planti.MainActivity;
 import com.example.planti.R;
 
 /**
@@ -72,22 +78,49 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     TextView tvNombre, tvEmail, tvDescripcion;
     Button btnEditar, btnCerrarSesion;
+    String email, name, description;
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         tvNombre = view.findViewById(R.id.tvNombre);
         tvEmail = view.findViewById(R.id.tvEmail);
-        tvDescripcion = view.findViewById(R.id.tvNombre);
+        tvDescripcion = view.findViewById(R.id.tvDescripcion);
         btnEditar = view.findViewById(R.id.btnEditar);
         btnCerrarSesion = view.findViewById(R.id.btnGuardar);
 
         btnEditar.setOnClickListener(this);
         btnCerrarSesion.setOnClickListener(this);
+
+        cargarDatos();
+    }
+
+    @SuppressLint({"Range", "SetTextI18n"})
+    private void cargarDatos() {
+        Bdsqlite admin = new Bdsqlite(getActivity(), "planti", null, 1);
+        SQLiteDatabase bd = admin.getWritableDatabase();
+
+        Bundle b = getActivity().getIntent().getExtras();
+        email = b.getString("logged_user");
+        String query = "select name, description from users where email='" + email +"'";
+        Cursor fila = bd.rawQuery(query, null);
+        if (fila.moveToFirst()) {
+            name = fila.getString(fila.getColumnIndex("name"));
+            description = fila.getString(fila.getColumnIndex("description"));
+            tvNombre.setText(name);
+            tvEmail.setText(email);
+            tvDescripcion.setText(description);
+        } else {
+            Toast.makeText(getActivity(), "Ha ocurrido un error", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     @Override
     public void onClick(View view) {
         if(view == btnEditar){
             Intent intent = new Intent(getActivity(), EditProfile.class);
+            intent.putExtra("name", name);
+            intent.putExtra("email", email);
+            intent.putExtra("description", description);
             startActivity(intent);
         }else if(view == btnCerrarSesion){
             Intent intent = new Intent(getActivity(), Login.class);
