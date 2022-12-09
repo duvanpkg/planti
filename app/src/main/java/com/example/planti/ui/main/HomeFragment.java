@@ -69,7 +69,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     Bdsqlite admin;
     SQLiteDatabase bd;
+    int id;
 
+    @SuppressLint("Range")
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         admin = new Bdsqlite(getActivity(), "planti", null, 1);
@@ -80,6 +82,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast()) {
 
+                id = cursor.getInt(cursor.getColumnIndex("id"));
                 @SuppressLint("Range")
                 String name = cursor.getString(cursor.getColumnIndex("name"));
                 @SuppressLint("Range")
@@ -88,18 +91,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 byte[] image = cursor.getBlob(cursor.getColumnIndex("imageBitmap"));
                 @SuppressLint("Range")
                 String description = cursor.getString(cursor.getColumnIndex("description"));
+                float ratingAcum = cursor.getFloat(cursor.getColumnIndex("ratingAcum"));
+                int timesRated = cursor.getInt(cursor.getColumnIndex("timesRated"));
 
 
                 TextView tvNombre = new TextView(getActivity());
                 tvNombre.setText(name);
-                tvNombre.setTextSize(30);
+                tvNombre.setTextSize(35);
                 tvNombre.setTextColor(Color.parseColor("#000000"));
                 tvNombre.setGravity(Gravity.CENTER_HORIZONTAL);
 
                 ImageView iv = new ImageView(getActivity());
                 try{
                     iv.setImageBitmap(BitmapFactory.decodeByteArray(image, 0, image.length));
-                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(500, 500);
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(800, 800);
                     layoutParams.gravity=Gravity.CENTER;
                     iv.setLayoutParams(layoutParams);
 
@@ -107,9 +112,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     //show nothing
                 }
 
+                TextView tvRating = new TextView(getActivity());
+                if(timesRated==0){
+                    tvRating.setText("Calificación: --.-");
+                }else {
+                    tvRating.setText("Calificación: " + String.valueOf(Math.round((ratingAcum / timesRated) * 100.0) / 100.0));
+                }
+                tvRating.setTextSize(20);
+                tvRating.setTextColor(Color.parseColor("#000000"));
+                tvRating.setGravity(Gravity.RIGHT);
+
                 TextView tvTipo = new TextView(getActivity());
                 tvTipo.setText(plantKind);
-                tvTipo.setTextSize(20);
+                tvTipo.setTextSize(25);
                 tvTipo.setTextColor(Color.parseColor("#000000"));
                 tvTipo.setGravity(Gravity.CENTER_HORIZONTAL);
 
@@ -123,12 +138,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 btn.setText("Calificar");
                 btn.setOnClickListener(this);
 
+                TextView separador = new TextView(getActivity());
+                separador.setText("--------------------------------------------------------------------------------------------------------");
+                separador.setTextColor(Color.parseColor("#FEFEFE"));
+
                 LinearLayout layout = getActivity().findViewById(R.id.layout);
                 layout.addView(tvNombre);
                 layout.addView(tvTipo);
                 layout.addView(tvDescripcion);
                 layout.addView(iv);
+                layout.addView(tvRating);
                 layout.addView(btn);
+                layout.addView(separador);
 
                 cursor.moveToNext();
             }
@@ -141,6 +162,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(getActivity(),RatePlant.class);
+        intent.putExtra("idPlant", id);
         startActivity(intent);
     }
 }
