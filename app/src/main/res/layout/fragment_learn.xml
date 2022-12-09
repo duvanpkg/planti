@@ -24,6 +24,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -412,9 +416,10 @@
                     android:layout_height="wrap_content"
                     app:autoPlay="false"
                     app:videoId="qbuidUVCkzM" />
+
                 <Space
                     android:layout_width="match_parent"
-                    android:layout_height="14dp" />
+                    android:layout_height="60dp" />
             </LinearLayout>
 
         </LinearLayout>
