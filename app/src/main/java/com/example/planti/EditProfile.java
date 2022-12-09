@@ -61,7 +61,7 @@ public class EditProfile extends AppCompatActivity implements View.OnClickListen
             registro.put("email", email);
             registro.put("description", description);
 
-            int cant = bd.update("users", registro, "email='" + oldEmail +"'1", null);
+            int cant = bd.update("users", registro, "email='" + oldEmail +"'", null);
             bd.close();
             if (cant == 1) {
                 Toast.makeText(this, "Se actualizó con éxito", Toast.LENGTH_LONG).show();
